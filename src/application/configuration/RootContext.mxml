@@ -34,7 +34,6 @@
 		
 		<Object type="{Object}" id="appConfiguration">
 			<DynamicProperty name="APP_ID" value="4365803" />
-			<DynamicProperty name="APP_SECRET" value="MrxyGIgj95hr3WHfr7jn" />
 			<DynamicProperty name="PERMISSIONS" value="video" />
 			<DynamicProperty name="OAUTH_URL" value="https://oauth.vk.com/authorize/" />
 			<DynamicProperty name="REDIRECT_URI" value="https://oauth.vk.com/blank.html" />
