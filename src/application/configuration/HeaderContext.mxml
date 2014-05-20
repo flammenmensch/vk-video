@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Objects xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns="http://www.spicefactory.org/parsley">
+	<fx:Script>
+		<![CDATA[
+			import application.commands.LogoutCommand;
+			import application.commands.UpdateLoginStatusCommand;
+			import application.messages.LoginMessage;
+			
+			import domain.UserModel;
+			
+			import presentation.HeaderPM;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		<MapCommand messageType="{LoginMessage}" selector="{LoginMessage.LOGOUT}">
+			<CommandSequence>
+				<Command type="{LogoutCommand}">
+					<Property name="user" typeRef="{UserModel}" />
+				</Command>
+				<Command type="{UpdateLoginStatusCommand}">
+					<Property name="user" typeRef="{UserModel}" />
+					<Property name="status" value="{false}" />
+				</Command>
+			</CommandSequence>
+		</MapCommand>
+		
+		<Object type="{HeaderPM}">
+			<MessageDispatcher property="dispatcher" />
+			<Property name="user" typeRef="{UserModel}" />
+		</Object>
+		
+	</fx:Declarations>
+	
+</Objects>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:parsley="http://www.spicefactory.org/parsley"
+		 visible="{this.model.video.video !== null}">
+	
+	<fx:Declarations>
+		<parsley:ContextBuilder>
+			<parsley:FlexConfig type="{VideoContext}" />
+		</parsley:ContextBuilder>
+		
+		<parsley:FastInject property="model" type="{VideoPM}" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import application.configuration.VideoContext;
+			
+			[Bindable]
+			public var model:VideoPM;
+		]]>
+	</fx:Script>
+	
+	<s:showEffect>
+		<s:Fade alphaFrom="0" alphaTo="1" duration="300" />
+	</s:showEffect>
+	
+	<s:hideEffect>
+		<s:Fade alphaFrom="1" alphaTo="0" duration="150" />
+	</s:hideEffect>
+
+	<s:Rect width="100%" height="100%">
+		<s:fill>
+			<s:SolidColor color="0x000000" alpha=".6" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:Label top="10" left="10" right="50" fontSize="16" color="0xffffff" maxDisplayedLines="1" text="{this.model.video.video.title}" />
+	
+	<s:RectangularDropShadow angle="90" distance="3" blurX="20" blurY="20" width="640" height="480" horizontalCenter="0" verticalCenter="0" alpha=".75" />
+	
+	<s:BorderContainer width="640" height="480" horizontalCenter="0" verticalCenter="0">
+		<s:backgroundFill>
+			<s:SolidColor color="0x000000" />
+		</s:backgroundFill>
+		<s:borderStroke>
+			<s:SolidColorStroke color="0xffffff" weight="3" caps="square" joints="miter" pixelHinting="true" />
+		</s:borderStroke>
+	
+	</s:BorderContainer>
+	
+	
+	<!--<s:VideoPlayer horizontalCenter="0" verticalCenter="0" width="640" height="480" source="{this.video.video.source}" autoPlay="true" />-->
+	
+	<s:Button label="Закрыть" top="10" right="10" click="this.model.close()" />
+	
+</s:Group>

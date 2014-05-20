@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Objects xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns="http://www.spicefactory.org/parsley">
+	
+	<fx:Script>
+		<![CDATA[
+			import application.commands.SearchCommand;
+			import application.messages.SearchMessage;
+			
+			import domain.ListCollectionModel;
+			import domain.UserModel;
+			
+			import infrastructure.VkService;
+			
+			import presentation.SearchPM;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		<MapCommand messageType="{SearchMessage}">
+			<Command type="{SearchCommand}">
+				<Property name="vk" typeRef="{VkService}" />
+				<Property name="user" typeRef="{UserModel}" />
+				<Property name="searchResults" idRef="searchResults" />
+			</Command>
+		</MapCommand>
+		
+		<Object type="{ListCollectionModel}" id="searchResults" />
+		
+		<Object type="{SearchPM}">
+			<MessageDispatcher property="dispatcher" />
+			<Property name="searchResults" idRef="searchResults" />
+			<CommandStatus property="isSearching" type="{SearchMessage}" />
+		</Object>
+		
+	</fx:Declarations>
+	
+</Objects>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Objects xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns="http://www.spicefactory.org/parsley">
+	<fx:Script>
+		<![CDATA[
+			import application.commands.GetUserInfoCommand;
+			import application.commands.LoginCommand;
+			import application.commands.SaveUserCommand;
+			import application.commands.UpdateLoginStatusCommand;
+			import application.messages.LoginMessage;
+			
+			import domain.UserModel;
+			
+			import infrastructure.VkService;
+			
+			import presentation.LoginPM;
+			
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		<MapCommand messageType="{LoginMessage}" selector="{LoginMessage.LOGIN}">
+			<CommandSequence>
+				<Command type="{LoginCommand}">
+					<Property name="stage" typeRef="{Stage}" />
+					<Property name="user" typeRef="{UserModel}" />
+					<Property name="configuration" idRef="appConfiguration" />
+				</Command>
+				<Command type="{GetUserInfoCommand}">
+					<Property name="user" typeRef="{UserModel}" />
+					<Property name="vk" typeRef="{VkService}" />
+				</Command>
+				<Command type="{SaveUserCommand}">
+					<Property name="user" typeRef="{UserModel}" />
+				</Command>
+				<Command type="{UpdateLoginStatusCommand}">
+					<Property name="user" typeRef="{UserModel}" />
+					<Property name="status" value="{true}" />
+				</Command>
+			</CommandSequence>
+			
+		</MapCommand>
+		
+		<Object type="{LoginPM}">
+			<MessageDispatcher property="dispatcher" />
+			<CommandStatus property="loggingIn" type="{LoginMessage}" selector="{LoginMessage.LOGIN}" />
+			<Property name="user" typeRef="{UserModel}" />
+		</Object>
+		
+	</fx:Declarations>
+	
+</Objects>

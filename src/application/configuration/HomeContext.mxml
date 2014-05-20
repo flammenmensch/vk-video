@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Objects xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns="http://www.spicefactory.org/parsley">
+	
+	<fx:Script>
+		<![CDATA[
+			import application.commands.DeselectVideoCommand;
+			import application.commands.SelectVideoCommand;
+			import application.messages.SelectVideoMessage;
+			
+			import domain.VideoModel;
+			
+			import presentation.HomePM;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<MapCommand messageType="{SelectVideoMessage}" selector="{SelectVideoMessage.SELECT}">
+			<Command type="{SelectVideoCommand}">
+				<Property name="video" typeRef="{VideoModel}" />
+			</Command>
+		</MapCommand>
+		
+		<MapCommand messageType="{SelectVideoMessage}" selector="{SelectVideoMessage.DESELECT}">
+			<Command type="{DeselectVideoCommand}">
+				<Property name="video" typeRef="{VideoModel}" />
+			</Command>
+		</MapCommand>
+		
+		<Object type="{VideoModel}" />
+		
+		<Object type="{HomePM}">
+			<MessageDispatcher property="dispatcher" />
+		</Object>
+	</fx:Declarations>
+	
+</Objects>

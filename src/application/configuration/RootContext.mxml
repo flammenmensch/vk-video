@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Objects xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns="http://www.spicefactory.org/parsley">
+	<fx:Script>
+		<![CDATA[
+			import domain.UserModel;
+			import domain.UserModelFactory;
+			
+			import infrastructure.StageFactory;
+			import infrastructure.VkServiceFactory;
+			
+			import presentation.RootPM;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		
+		<Object type="{UserModelFactory}">
+			<Factory method="createUserModel" />
+		</Object>
+		
+		<Object type="{RootPM}">
+			<Property name="user" typeRef="{UserModel}" />
+		</Object>
+		
+		<Object type="{StageFactory}">
+			<Factory method="createStage" />
+		</Object>
+		
+		<Object type="{VkServiceFactory}">
+			<Property name="configuration" idRef="appConfiguration" />
+			<Factory method="createVkService" />
+		</Object>
+		
+		<Object type="{Object}" id="appConfiguration">
+			<DynamicProperty name="APP_ID" value="4365803" />
+			<DynamicProperty name="APP_SECRET" value="MrxyGIgj95hr3WHfr7jn" />
+			<DynamicProperty name="PERMISSIONS" value="video" />
+			<DynamicProperty name="OAUTH_URL" value="https://oauth.vk.com/authorize/" />
+			<DynamicProperty name="REDIRECT_URI" value="https://oauth.vk.com/blank.html" />
+			<DynamicProperty name="API_VERSION" value="5.21" />
+			<DynamicProperty name="API_URL" value="https://api.vk.com/method/" />
+		</Object>
+		
+	</fx:Declarations>
+</Objects>

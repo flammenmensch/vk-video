@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:parsley="http://www.spicefactory.org/parsley"
+		 xmlns:presentation="presentation.*">
+	<fx:Script>
+		<![CDATA[
+			import application.configuration.LoginContext;
+			
+			[Bindable]
+			public var model:LoginPM;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<parsley:ContextBuilder>
+			<parsley:FlexConfig type="{LoginContext}" />
+		</parsley:ContextBuilder>
+		
+		<parsley:FastInject property="model" type="{LoginPM}" />
+	</fx:Declarations>
+	
+	<s:Button horizontalCenter="0" verticalCenter="0" label="Войти с ВКонтакте" click="this.model.login()" />
+	
+</s:Group>
