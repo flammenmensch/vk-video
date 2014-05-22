@@ -3,10 +3,21 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		horizontalScrollPolicy="off"
 		useVirtualLayout="false"
-		itemRenderer="presentation.itemRenderers.VideoItemRenderer">
+		borderVisible="false"
+		itemRenderer="presentation.itemRenderers.VideoThumbnailItemRenderer">
 	
 	<fx:Metadata>
-		[Event(name="play", type="presentation.events.VideoListEvent")]
+		[Event(name="playVideo", type="presentation.events.VideoListEvent")]
+		[Event(name="addVideo", type="presentation.events.VideoListEvent")]
 	</fx:Metadata>
 	
+	<s:layout>
+		<s:TileLayout horizontalGap="10" verticalGap="10" horizontalAlign="center" />
+	</s:layout>
+	
+	<fx:Script>
+		<![CDATA[
+			import presentation.events.VideoListEvent;
+		]]>
+	</fx:Script>
 </s:List>

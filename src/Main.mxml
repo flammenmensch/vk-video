@@ -16,7 +16,7 @@
 		@font-face {
 			src: url("/../assets/fonts/Roboto-Bold.ttf");
 			fontFamily: Roboto;
-			bold: true;
+			fontWeight: bold;
 		}
 		
 		@font-face {

@@ -18,7 +18,13 @@ package domain {
 					user.setExpirationDate(object.expirationDate);
 					user.setFullName(object.fullName);
 					
-					user.setLoggedIn(true);
+					var now:Date = new Date();
+					
+					var diff:Number = user.expirationDate.getTime() - now.getTime();
+					
+					if (diff > 0) {
+						user.setLoggedIn(true);
+					}
 				}
 			}
 			

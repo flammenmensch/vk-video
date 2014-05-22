@@ -55,7 +55,7 @@ package application.commands {
 					
 					if (pair[0] === "expires_in") {
 						var expirationDate:Date = new Date();
-						expirationDate.setTime(expirationDate.getTime() + parseInt(pair[1]));
+						expirationDate.setTime(expirationDate.getTime() + parseInt(pair[1]) * 1000);
 						
 						this.user.setExpirationDate(expirationDate);
 					}

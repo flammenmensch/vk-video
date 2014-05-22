@@ -1,7 +1,7 @@
 package application.commands {
 	import spark.components.Window;
 	
-	import application.messages.SelectVideoMessage;
+	import application.messages.VideoMessage;
 	
 	import domain.VideoModel;
 	
@@ -11,7 +11,7 @@ package application.commands {
 		
 		public var video:VideoModel;
 		
-		public function execute(message:SelectVideoMessage):void {
+		public function execute(message:VideoMessage):void {
 			var window:Window = new VideoWindow(message.video.player);
 			
 			window.width = 640;

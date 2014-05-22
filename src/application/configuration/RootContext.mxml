@@ -3,6 +3,8 @@
 		 xmlns="http://www.spicefactory.org/parsley">
 	<fx:Script>
 		<![CDATA[
+			import application.errors.VkApiCommandErrorHandler;
+			
 			import domain.UserModel;
 			import domain.UserModelFactory;
 			
@@ -14,6 +16,10 @@
 	</fx:Script>
 	
 	<fx:Declarations>
+		
+		<Object type="{VkApiCommandErrorHandler}">
+			<CommandError method="handleError" />
+		</Object>
 		
 		<Object type="{UserModelFactory}">
 			<Factory method="createUserModel" />

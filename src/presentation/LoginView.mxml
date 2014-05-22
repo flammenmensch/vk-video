@@ -20,6 +20,6 @@
 		<parsley:FastInject property="model" type="{LoginPM}" />
 	</fx:Declarations>
 	
-	<s:Button horizontalCenter="0" verticalCenter="0" label="Войти с ВКонтакте" click="this.model.login()" />
+	<s:Button enabled="{!this.model.loggingIn}" horizontalCenter="0" verticalCenter="0" label="Войти с ВКонтакте" click="this.model.login()" />
 	
 </s:Group>

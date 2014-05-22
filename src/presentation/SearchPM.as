@@ -1,10 +1,11 @@
 package presentation {
+	import mx.collections.IList;
 	import mx.utils.StringUtil;
 	
 	import application.messages.SearchMessage;
-	import application.messages.SelectVideoMessage;
+	import application.messages.VideoMessage;
 	
-	import domain.ListCollectionModel;
+	import domain.VideoVO;
 	
 	public final class SearchPM {
 		
@@ -14,19 +15,33 @@ package presentation {
 		public var isSearching:Boolean;
 		
 		[Bindable]
-		public var searchResults:ListCollectionModel;
+		public var searchResults:IList;
 		
-		public function selectVideo(video:Object):void {
-			this.dispatcher(new SelectVideoMessage(SelectVideoMessage.SELECT, video));
+		[Bindable]
+		public var searchQuery:String;
+		
+		public function selectVideo(video:VideoVO):void {
+			this.dispatcher(new VideoMessage(VideoMessage.SELECT, video));
 		}
 		
-		public function search(query:String):void {
-			if (query === null || StringUtil.trim(query) === "") {
+		public function addVideo(video:VideoVO):void {
+			this.dispatcher(new VideoMessage(VideoMessage.ADD, video));
+		}
+		
+		public function search():void {
+			if (this.searchQuery === null || StringUtil.trim(this.searchQuery) === "") {
 				return;
 			}
 			
-			this.dispatcher(new SearchMessage(query));	
+			this.dispatcher(new SearchMessage(this.searchQuery));	
 		}
 		
+		public function searchComplete(results:IList=null):void {
+			if (results === null) {
+				return;
+			}
+			
+			this.searchResults = results;
+		}
 	}
 }

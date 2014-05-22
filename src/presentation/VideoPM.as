@@ -1,5 +1,5 @@
 package presentation {
-	import application.messages.SelectVideoMessage;
+	import application.messages.VideoMessage;
 	
 	import domain.VideoModel;
 	
@@ -11,7 +11,7 @@ package presentation {
 		public var dispatcher:Function;
 		
 		public function close():void {
-			this.dispatcher(new SelectVideoMessage(SelectVideoMessage.DESELECT));
+			this.dispatcher(new VideoMessage(VideoMessage.DESELECT));
 		}
 	}
 }

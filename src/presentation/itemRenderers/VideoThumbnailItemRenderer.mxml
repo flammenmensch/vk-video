@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				autoDrawBackground="false"
+				width="320"
+				height="240">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.graphics.BitmapSmoothingQuality;
+			
+			import domain.VideoVO;
+			
+			import presentation.events.VideoListEvent;
+			
+			private function playButton_clickHandler(event:MouseEvent):void {
+				this.dispatchEvent(new VideoListEvent(VideoListEvent.PLAY_VIDEO, this.data as VideoVO, true));
+			}
+			
+			private function addButton_clickHandler(event:MouseEvent):void {
+				this.dispatchEvent(new VideoListEvent(VideoListEvent.ADD_VIDEO, this.data as VideoVO, true));
+			}
+			
+			private function formatDuration(duration:Number):String {
+				var minutes:String = Math.ceil(duration / 60).toString(10);
+				var seconds:String = (duration % 60).toString(10);
+				
+				if (minutes.length === 1) {
+					minutes = "0" + minutes;
+				}
+				
+				if (seconds.length === 1) {
+					seconds = "0" + seconds;
+				}
+				
+				return minutes + ":" + seconds;
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Metadata>
+		[Event(name="playVideo", type="presentation.events.VideoListEvent")]
+		[Event(name="addVideo", type="presentation.events.VideoListEvent")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="hovered" />
+		<s:State name="selected" />
+	</s:states>
+	
+<!--	<s:transitions>
+		<s:Transition fromState="normal" toState="hovered">
+			<s:Animate duration="300" target="{thumbnailDisplay}">
+				<s:SimpleMotionPath property="alpha" />
+			</s:Animate>
+		</s:Transition>
+	</s:transitions>-->
+	
+	<s:BitmapImage id="thumbnailDisplay" alpha.normal=".8" alpha="1" source="{data.thumbnail}" width="320" height="240" smooth="true" smoothingQuality="{BitmapSmoothingQuality.HIGH}" />
+	
+	<s:BorderContainer bottom="0" left="0" right="0" borderVisible="false">
+		<s:backgroundFill>
+			<s:SolidColor color="0x000000" alpha=".75" />
+		</s:backgroundFill>
+		
+		<s:layout>
+			<s:HorizontalLayout gap="5" paddingLeft="5" paddingRight="5" paddingTop="5" paddingBottom="5" verticalAlign="middle" />
+		</s:layout>
+		
+		<s:Label text="{data.title}" width="100%" color="0xffffff" maxDisplayedLines="1" showTruncationTip="false" />
+		<s:Label text="{this.formatDuration(data.duration)}" fontWeight="bold" color="0xffffff" />
+	</s:BorderContainer>
+	
+	<s:Button label="Воспроизвести" excludeFrom="normal" top="5" left="5" click="playButton_clickHandler(event)" />
+	
+	<s:Button label="Добавить" visible="{!this.data.added}" excludeFrom="normal" top="5" right="5" click="addButton_clickHandler(event)" />
+	
+	<s:Rect width="100%" height="100%" fill="{null}">
+		<s:stroke>
+			<s:SolidColorStroke weight="1" pixelHinting="true" joints="miter" caps="square" color="0x333333" />
+		</s:stroke>
+	</s:Rect>
+	
+</s:ItemRenderer>

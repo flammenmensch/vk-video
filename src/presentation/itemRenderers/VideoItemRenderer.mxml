@@ -18,7 +18,7 @@
 			import presentation.events.VideoListEvent;
 			
 			protected function playButton_clickHandler(event:MouseEvent):void {
-				this.dispatchEvent(new VideoListEvent(VideoListEvent.PLAY, this.data, true));
+				this.dispatchEvent(new VideoListEvent(VideoListEvent.PLAY_VIDEO, this.data, true));
 			}
 		]]>
 	</fx:Script>

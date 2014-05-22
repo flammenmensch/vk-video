@@ -1,15 +1,19 @@
 package application.messages {
-	public final class SelectVideoMessage {
+	import domain.VideoVO;
+
+	public final class VideoMessage {
 		
 		public static const SELECT:String = "select";
 		
 		public static const DESELECT:String = "deselect";
 		
-		private var __video:Object;
+		public static const ADD:String = "add";
+		
+		private var __video:VideoVO;
 		
 		private var __action:String;
 		
-		public function SelectVideoMessage(action:String, video:Object=null) {
+		public function VideoMessage(action:String, video:VideoVO=null) {
 			this.__action = action;
 			this.__video = video;
 		}
@@ -19,7 +23,7 @@ package application.messages {
 			return this.__action;
 		}
 		
-		public function get video():Object {
+		public function get video():VideoVO {
 			return this.__video;
 		}
 	}

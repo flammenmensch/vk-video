@@ -26,20 +26,27 @@ package infrastructure {
 			});
 		}
 		
-		public function search(query:String, accessToken:String):AsyncToken {
+		public function search(query:String, offset:uint, accessToken:String):AsyncToken {
 			return this.sendRequest("video.search", {
 				q: query,
 				sort: 2,
-				count: 50,
-				filters: "long,mp4",
+				count: 200,
+				offset: offset,
+				filters: "long",
+				access_token: accessToken
+			});
+		}
+		
+		public function addVideo(videoId:String, ownerId:String, accessToken:String):AsyncToken {
+			return this.sendRequest("video.add", {
+				video_id: videoId,
+				owner_id: ownerId,
 				access_token: accessToken
 			});
 		}
 		
 		private function sendRequest(method:String, params:Object):AsyncToken {
 			this.__httpService.url = method;
-			
-			//params.v = this.__apiVersion;
 			
 			return this.__httpService.send(params);
 		}

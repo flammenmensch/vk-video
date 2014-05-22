@@ -6,7 +6,7 @@
 		<![CDATA[
 			import application.commands.DeselectVideoCommand;
 			import application.commands.SelectVideoCommand;
-			import application.messages.SelectVideoMessage;
+			import application.messages.VideoMessage;
 			
 			import domain.VideoModel;
 			
@@ -15,13 +15,13 @@
 	</fx:Script>
 	
 	<fx:Declarations>
-		<MapCommand messageType="{SelectVideoMessage}" selector="{SelectVideoMessage.SELECT}">
+		<MapCommand messageType="{VideoMessage}" selector="{VideoMessage.SELECT}">
 			<Command type="{SelectVideoCommand}">
 				<Property name="video" typeRef="{VideoModel}" />
 			</Command>
 		</MapCommand>
 		
-		<MapCommand messageType="{SelectVideoMessage}" selector="{SelectVideoMessage.DESELECT}">
+		<MapCommand messageType="{VideoMessage}" selector="{VideoMessage.DESELECT}">
 			<Command type="{DeselectVideoCommand}">
 				<Property name="video" typeRef="{VideoModel}" />
 			</Command>

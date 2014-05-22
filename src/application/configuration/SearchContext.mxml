@@ -4,10 +4,11 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import application.commands.AddVideoCommand;
 			import application.commands.SearchCommand;
 			import application.messages.SearchMessage;
+			import application.messages.VideoMessage;
 			
-			import domain.ListCollectionModel;
 			import domain.UserModel;
 			
 			import infrastructure.VkService;
@@ -22,16 +23,20 @@
 			<Command type="{SearchCommand}">
 				<Property name="vk" typeRef="{VkService}" />
 				<Property name="user" typeRef="{UserModel}" />
-				<Property name="searchResults" idRef="searchResults" />
 			</Command>
 		</MapCommand>
 		
-		<Object type="{ListCollectionModel}" id="searchResults" />
+		<MapCommand messageType="{VideoMessage}" selector="{VideoMessage.ADD}">
+			<Command type="{AddVideoCommand}">
+				<Property name="vk" typeRef="{VkService}" />
+				<Property name="user" typeRef="{UserModel}" />
+			</Command>
+		</MapCommand>
 		
 		<Object type="{SearchPM}">
 			<MessageDispatcher property="dispatcher" />
-			<Property name="searchResults" idRef="searchResults" />
 			<CommandStatus property="isSearching" type="{SearchMessage}" />
+			<CommandResult method="searchComplete" type="{SearchMessage}" />
 		</Object>
 		
 	</fx:Declarations>
